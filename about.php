@@ -1,5 +1,4 @@
 <?php require "includes/header.php";?>
-<?php require "config/config.php";?>
 
     <section class="hero-wrap hero-wrap-2" style="background-image: url('images/image_2.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
