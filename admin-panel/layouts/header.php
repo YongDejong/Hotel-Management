@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    define("ADMINURL", "http://localhost/hotel-booking/admin-panel");
+    define("ADMINURL", "http://www.threeempires.byethost31.com/admin-panel");
 ?>
 <!DOCTYPE html>
 <html lang="en">
