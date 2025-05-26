@@ -1,16 +1,14 @@
-<?php require "../config/config.php"; ?>
 <?php require "../includes/header.php"; ?>
+<?php require "../config/config.php"; ?>
 <?php 
 
-  if(isset($_SESSION['username'])) {
+if(isset($_SESSION['username'])) {
     echo "<script>window.location.href='".APPURL."';</script>";
-  } 
-
-
+}
 if (isset($_POST['submit'])) {
 	if(empty($_POST['email']) OR empty($_POST['password'])) {
 		echo "<script>alert('Please fill in all fields');</script>";
-	} else {
+	 } else {
 
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -21,20 +19,15 @@ if (isset($_POST['submit'])) {
     $fetch = $login->fetch(PDO::FETCH_ASSOC);
 
     if($login->rowCount() > 0) {
+        if (password_verify($password, $fetch['mypassword'])) {
+          //echo "<script>alert('Login successful');</script>";
+            $_SESSION['username'] = $fetch['username'];
+            $_SESSION['id'] = $fetch['id'];
 
-      if(password_verify($password, $fetch['mypassword'])) {
-
-        //echo "<script>alert('Login successful');</script>";
-
-          $_SESSION['username'] = $fetch['username'];
-          $_SESSION['id'] = $fetch['id'];
-
-          header("location: ".APPURL."");
-
-      } else {
-
-        echo "<script>alert('Email or Password is incorrect');</script>";
-      }
+            header("location: ".APPURL."");
+        } else {
+            echo "<script>alert('Email or Password is incorrect');</script>";
+        }
     } else {
         echo "<script>alert('Email not found');</script>";
     }
