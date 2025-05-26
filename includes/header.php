@@ -2,7 +2,7 @@
 
 	session_start(); // Start the session
 	define("APPURL", "http://www.threeempires.byethost31.com/");
-
+	$currentPage = basename($_SERVER['PHP_SELF']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,10 +56,22 @@
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	        	<li class="nav-item active"><a href="<?php echo APPURL; ?>" class="nav-link">Home</a></li>
-	        	<li class="nav-item"><a href="<?php echo APPURL; ?>/about.php" class="nav-link">About</a></li>
-	        	<li class="nav-item"><a href="<?php echo APPURL; ?>/services.php" class="nav-link">Services</a></li>
-	          <li class="nav-item"><a href="<?php echo APPURL; ?>/contact.php" class="nav-link">Contact</a></li>
+	        	<li class="nav-item <?php echo $currentPage == 'index.php' ? 'active' : ''; ?>">
+				<a href="<?php echo APPURL; ?>" class="nav-link">Home</a>
+				</li>
+
+				<li class="nav-item <?php echo $currentPage == 'about.php' ? 'active' : ''; ?>">
+				<a href="<?php echo APPURL; ?>about.php" class="nav-link">About</a>
+				</li>
+
+				<li class="nav-item <?php echo $currentPage == 'services.php' ? 'active' : ''; ?>">
+				<a href="<?php echo APPURL; ?>services.php" class="nav-link">Services</a>
+				</li>
+
+				<li class="nav-item <?php echo $currentPage == 'contact.php' ? 'active' : ''; ?>">
+				<a href="<?php echo APPURL; ?>contact.php" class="nav-link">Contact</a>
+				</li>
+
 			 <?php if (!isset($_SESSION['username'])) : ?>
 	          <li class="nav-item"><a href="<?php echo APPURL;?>/auth/login.php" class="nav-link">Login</a></li>
 	          <li class="nav-item"><a href="<?php echo APPURL;?>/auth/register.php" class="nav-link">Register</a></li>
