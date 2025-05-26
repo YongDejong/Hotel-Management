@@ -1,0 +1,22 @@
+name: Deploy via git-ftp
+
+on:
+  push:
+    branches:
+      - main  # or your deployment branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Deploy files to FTP
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+        run: |
+          git ftp push --force --auto-init --verbose --syncroot=./ --user="$FTP_USERNAME" --passwd="$FTP_PASSWORD" ftp://$FTP_SERVER/
