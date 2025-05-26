@@ -1,7 +1,7 @@
 <?php 
 
 	session_start(); // Start the session
-	define("APPURL", "http://localhost/hotel-booking/");
+	define("APPURL", "http://www.threeempires.byethost31.com/");
 
 ?>
 <!DOCTYPE html>
