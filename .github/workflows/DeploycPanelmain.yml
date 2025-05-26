@@ -1,22 +1,22 @@
-name: Publish Website to CPanel
+name: Deploy via git-ftp
 
 on:
   push:
     branches:
-      - main  # Changed from master to main
+      - main  # or your deployment branch
 
 jobs:
-  FTP-Deploy-Action:
-    name: FTP-Deploy-Action
+  deploy:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2.1.0
-        with:
-          fetch-depth: 0
 
-      - name: FTP-Deploy-Action
-        uses: SamKirkland/FTP-Deploy-Action@3.1.1
-        with:
-          ftp-server: ${{ secrets.FTP_SERVER }}
-          ftp-username: ${{ secrets.FTP_USERNAME }}
-          ftp-password: ${{ secrets.FTP_PASSWORD }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Deploy files to FTP
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER: your-ftp-server.com
+        run: |
+          git ftp push --force --auto-init --verbose --syncroot=./ --user="$FTP_USERNAME" --passwd="$FTP_PASSWORD" ftp://$FTP_SERVER/
