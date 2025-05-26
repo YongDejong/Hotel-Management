@@ -1,8 +1,8 @@
 <?php
 
-define ("HOST", "localhost");
-define ("DBNAME", "hotel_management");
-define ("USER", "root");
+define ("HOST", "sql105.byethost31.com");
+define ("DBNAME", "b31_39012238_hotel_management");
+define ("USER", "b31_39012238");
 define ("PASSWORD", "");
 
 $conn = new PDO("mysql:host=".HOST.";dbname=".DBNAME, USER, PASSWORD);
