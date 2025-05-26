@@ -1,6 +1,9 @@
 <?php require "../includes/header.php"; ?>
 <?php require "../config/config.php"; ?>
 <?php 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 if(isset($_SESSION['username'])) {
     echo "<script>window.location.href='".APPURL."';</script>";
